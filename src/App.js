@@ -1,10 +1,18 @@
 import React from 'react';
+import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
 
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import Proyect from "./components/project/Proyect"
 function App() {
   return (
-    <div className="App bg-gray-200 text-gray-900 w-full h-screen">
-      <h1 className="text-center text-4xl">test</h1>
-    </div>
+    <Router>
+      <Switch>
+      <Route exact path="/" component={Login}></Route>
+      <Route exact path="/register" component={Register}></Route>
+      <Route exact path="/proyect" component={Proyect}></Route>
+      </Switch>
+    </Router>
   );
 }
 
