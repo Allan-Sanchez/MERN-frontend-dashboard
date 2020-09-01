@@ -4,7 +4,7 @@ import MenuList from "./MenuList";
 
 const Menu = () => {
   return (
-    <div className=" bg-gray-300 h-screen max-w-sm p-10">
+    <div className=" bg-gray-300  max-w-sm p-10">
       <div className="w-full">
         <h1 className="text-gray-900 font-extrabold text-4xl">
           MERN
@@ -13,7 +13,7 @@ const Menu = () => {
       </div>
       <MenuForm></MenuForm>
       <div>
-        <h3 className="text-gray-700 text-2xl mt-10 text-center font-bold">
+        <h3 className="text-gray-700 text-2xl mt-10 text-center font-bold mb-5">
           Your Project
         </h3>
         <MenuList></MenuList>

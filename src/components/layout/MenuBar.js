@@ -2,7 +2,7 @@ import React from "react";
 import Hamburger from "../../Hamburger.svg";
 const MenuBar = () => {
   return (
-    <div className="bg-gray-900 w-full h-20 flex justify-between items-center px-5 pr-10">
+    <div className="bg-gray-800 w-full h-20 flex justify-between items-center px-5 pr-10">
       <div className="flex items-center">
         <div className="h-full">
             <img className="h-10 fill-current text-teal-500" src={Hamburger} alt=""/>
