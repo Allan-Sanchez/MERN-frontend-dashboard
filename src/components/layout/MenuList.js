@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
 import ListProject from "./ListProject";
 
+import ProjectContext from "../../context/ProjectContext";
+
 const MenuList = () => {
-    const projects = [
-        {name:"virtual shop"},
-        {name:"intranet"},
-        {name:"Desinger your own web"}
-    ]
-    return (  
-        <ul>
-            {projects.map(project =>(
-                <ListProject  project={project}></ListProject>
-            ))}
-        </ul>
-    );
-}
- 
+  //  get project from global state
+  const projectsContext = useContext(ProjectContext);
+  const { projects, getProject } = projectsContext;
+
+  useEffect(() => {
+    getProject();
+  }, []);
+  // validad that project not be void
+  if (projects.length === 0) return null;
+
+  return (
+    <ul>
+      {projects.map((project) => (
+        <ListProject key={project.id} project={project}></ListProject>
+      ))}
+    </ul>
+  );
+};
+
 export default MenuList;
