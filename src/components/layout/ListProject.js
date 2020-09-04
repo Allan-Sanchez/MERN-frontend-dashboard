@@ -1,12 +1,19 @@
 import React, { useContext } from "react";
 
 import ProjectContext from "../../context/ProjectContext";
+// import TaskContext from "../../context/tasks/TaskContext";
+
 
 const ListProject = ({project}) => {
 
+  // get state project
   const projectContext = useContext(ProjectContext);
   const {currentProject} = projectContext;
   
+  // get state task
+
+  // const taskProject = useContext(TaskContext);
+  // const {}
   return (
     <li className="mb-2">
       <button className="w-full" onClick={() =>currentProject(project.id)}>

@@ -4,14 +4,7 @@ import Tasks from "./Tasks";
 
 const ListTask = () => {
     
-    const tasks = [
-        {name:"choose platform", state:true},
-        {name:"choose color", state:false},
-        {name:"choose color", state:false},
-        {name:"choose color", state:false},
-        {name:"choose page of platform", state:true},
-        {name:"choose hosting", state:false},
-    ] 
+    const tasks = [ ] 
     
     return ( 
        <div className="max-w-2xl mx-auto mt-10">
