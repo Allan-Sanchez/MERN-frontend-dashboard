@@ -8,7 +8,11 @@ import No_task from "../../no_task.svg";
 
 const Project = () => {
   const projectContext = useContext(ProjectContext);
-  const { project } = projectContext;
+  const { project,deleteProject } = projectContext;
+
+  const onClickdelete = () =>{
+    deleteProject(project[0].id);
+  }
 
   return (
     <div style={{minHeight:"100vh"}}  className="flex bg-gray-400 ">
@@ -24,7 +28,7 @@ const Project = () => {
               <div>
                 <button
                   className="bg-red-400 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none"
-                  type="button"
+                  type="button" onClick={onClickdelete}
                   style={{ transition: "all .15s ease" }}
                 >
                   Delete
@@ -39,7 +43,7 @@ const Project = () => {
           <div className="w-full mt-10">
             <h2 className="text-center font-bold text-4xl text-gray-700">Select a project</h2>
             <div className="max-w-sm mx-auto mt-10">
-              <img className="w-full" src={No_task} alt="" srcset=""/>
+              <img className="w-full" src={No_task} alt="no task" />
             </div>
           </div>
         )}

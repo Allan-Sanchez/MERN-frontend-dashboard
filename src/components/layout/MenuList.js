@@ -12,7 +12,7 @@ const MenuList = () => {
     getProject();
   }, []);
   // validad that project not be void
-  if (projects.length === 0) return null;
+  if (projects.length === 0) return (<h3 className="text-center text-xl text-gray-700">No projects available</h3>);
 
   return (
     <ul>

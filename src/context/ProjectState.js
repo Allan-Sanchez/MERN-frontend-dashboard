@@ -2,7 +2,14 @@ import React, { useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProjectContext from "./ProjectContext";
 import ProjectReducer from "./ProjectReducer";
-import { FORM_PROJECT, GET_PROJECT, ADD_PROJECT ,VALIDATE_FORM,CURRENT_PROJECT } from "../types";
+import {
+  FORM_PROJECT,
+  GET_PROJECT,
+  ADD_PROJECT,
+  VALIDATE_FORM,
+  CURRENT_PROJECT,
+  DELETE_PROJECT,
+} from "../types";
 const ProjectState = (props) => {
   const projects = [
     { id: 1, nameProject: "virtual shop" },
@@ -13,8 +20,8 @@ const ProjectState = (props) => {
   const initialState = {
     projects: [],
     formNew: false,
-    errorForm:false,
-    project:null
+    errorForm: false,
+    project: null,
   };
 
   // Dispatch para ejecutar las acciones
@@ -42,17 +49,26 @@ const ProjectState = (props) => {
     });
   };
 
-  const showError = () =>{
-      dispatch({
-          type:VALIDATE_FORM
-      })
-  }
+  const showError = () => {
+    dispatch({
+      type: VALIDATE_FORM,
+    });
+  };
 
-  const currentProject = (projectId) =>{
-      dispatch({
-          type:CURRENT_PROJECT,
-          payload:projectId
-      })
+//Select current project 
+  const currentProject = (projectId) => {
+    dispatch({
+      type: CURRENT_PROJECT,
+      payload: projectId,
+    });
+  };
+
+  // delete current projct
+  const deleteProject = (projectId) =>{
+    dispatch({
+      type:DELETE_PROJECT,
+      payload:projectId
+    })
   }
 
   return (
@@ -60,13 +76,14 @@ const ProjectState = (props) => {
       value={{
         projects: state.projects,
         formNew: state.formNew,
-        errorForm:state.errorForm,
-        project:state.project,        
+        errorForm: state.errorForm,
+        project: state.project,
         openForm,
         getProject,
         addProject,
         showError,
-        currentProject
+        currentProject,
+        deleteProject
       }}
     >
       {props.children}
