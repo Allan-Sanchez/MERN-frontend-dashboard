@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import ListProject from "./ListProject";
 
 import ProjectContext from "../../context/ProjectContext";
-
+import {TransitionGroup,CSSTransition} from 'react-transition-group';
 const MenuList = () => {
   //  get project from global state
   const projectsContext = useContext(ProjectContext);
@@ -17,9 +17,16 @@ const MenuList = () => {
 
   return (
     <ul>
-      {projects.map((project) => (
-        <ListProject key={project.id} project={project}></ListProject>
-      ))}
+      <TransitionGroup>
+        {projects.map((project) => (
+          <CSSTransition key={project.id}
+          timeout={200}
+          classNames="task"
+          >
+            <ListProject  project={project}></ListProject>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </ul>
   );
 };

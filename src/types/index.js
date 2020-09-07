@@ -12,6 +12,8 @@ export const DELETE_PROJECT = "DELETE_PROJECT";
 export const GET_TASKS = "GET_TASKS";
 export const ADD_TASKS = "ADD_TASKS";
 export const DELETE_TASK ="DELETE_TASK";
+export const STATE_TASK = "STATE_TASK";
+export const CURRENT_TASK = "CURRENT_TASK" 
 // show error message
 
 export const SHOW_ERROR = "SHOW_ERROR";
