@@ -1,11 +1,16 @@
 import React,{useState} from "react";
+import TasKContext from "../../context/tasks/TaskContext";
+import { useContext } from "react";
 
-const FormProject = () => {
-  
+const FormProject = ({id}) => {
+
+  const taskContext = useContext(TasKContext);
+  const {addTask, showError, getTasks} = taskContext;
+
   const[task, setTask] = useState({
-      nameTask:''
+      name:'',
   })
-  const {nameTask} = task;
+  const {name} = task;
 
   const onChangeTask = (e) =>{
       setTask({
@@ -15,19 +20,35 @@ const FormProject = () => {
   }
   const handleTask = (e) =>{
       e.preventDefault();
-      console.log('from form');
-    //   validated form
 
+      // validated form
+      if (name.trim() === '') {
+        showError('task name is necessary')
+        return;
+      }
 
-    // clean form
+      task.projectId = id;
+      task.state = false
+
+      // new task added
+      addTask(task);
+
+      // list new task
+      getTasks(id)
+
+      // clean task
+      setTask({
+        name:''
+      });
+
   }
     return (
     <form action="" onSubmit={handleTask} className=" max-w-xs mx-auto pt-5">
       <div className="mb-3 pt-0">
         <input
           type="text"
-          name="nameTask" value={nameTask} onChange={onChangeTask}
-          placeholder="types task"
+          name="name" value={name} onChange={onChangeTask}
+          placeholder="types task" autoFocus
           className="px-3 py-3 placeholder-gray-600 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full mb-2"
         />
         <button

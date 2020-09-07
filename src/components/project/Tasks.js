@@ -1,6 +1,22 @@
 import React from "react";
+import ProjectContext from "../../context/ProjectContext";
+import TaskContext from "../../context/tasks/TaskContext";
+import { useContext } from "react";
 
 const Tasks = ({ task }) => {
+
+  const projectContext = useContext(ProjectContext);
+  const {project} = projectContext;
+
+  const taskContext = useContext(TaskContext);
+  const {deleteTask, getTasks} = taskContext;
+
+  const [currentProject] = project;
+  const deleOneTask =(id) =>{
+    deleteTask(id);
+    getTasks(currentProject.id)
+  };
+
   return (
     <li className="bg-gray-100 text-gray-700 py-3 mb-4 px-10 flex justify-between shadow-md">
       <div>
@@ -26,6 +42,7 @@ const Tasks = ({ task }) => {
         </button>
 
         <button
+          onClick={() =>deleOneTask(task.id)}
           className="ml-2 bg-gray-200 text-gray-700  font-semibold px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none "
           type="button"
           style={{transition: "all .15s ease"}}
