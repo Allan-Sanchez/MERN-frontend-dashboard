@@ -1,11 +1,24 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import TasKContext from "../../context/tasks/TaskContext";
 import { useContext } from "react";
 
 const FormProject = ({id}) => {
 
   const taskContext = useContext(TasKContext);
-  const {addTask, showError, getTasks} = taskContext;
+  const {currentTask, addTask, showError, getTasks, updateTask, cleanTask} = taskContext;
+
+// useefect
+  useEffect(() => {
+    if (currentTask !== null) {
+      setTask(currentTask);
+    }else{
+      setTask({
+        name:''
+      })
+    }
+  }, [currentTask])
+
+
 
   const[task, setTask] = useState({
       name:'',
@@ -27,11 +40,20 @@ const FormProject = ({id}) => {
         return;
       }
 
-      task.projectId = id;
-      task.state = false
+      // checking is new task
+      if (currentTask === null) {
+        
+        task.projectId = id;
+        task.state = false
+        // new task added
+        addTask(task);
+      }else{
+        // update task 
+        updateTask(task);
+        // clean task
+        cleanTask()
+      }
 
-      // new task added
-      addTask(task);
 
       // list new task
       getTasks(id)
@@ -56,7 +78,7 @@ const FormProject = ({id}) => {
           type="submit"
           style={{ transition: "all .15s ease" }}
         >
-          Add Task
+          {currentTask ? 'Edit Task' : 'Add Task'}
         </button>
       </div>
     </form>

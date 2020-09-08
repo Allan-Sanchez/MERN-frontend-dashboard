@@ -4,7 +4,9 @@ import {
   SHOW_ERROR,
   DELETE_TASK,
   STATE_TASK,
-  CURRENT_TASK
+  CURRENT_TASK,
+  UPDATE_TASK,
+  CLEAN_TASK
 } from "../../types";
 
 export default (state, action) => {
@@ -34,6 +36,7 @@ export default (state, action) => {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
+    case UPDATE_TASK:
     case STATE_TASK:
       return {
         ...state,
@@ -46,6 +49,11 @@ export default (state, action) => {
             ...state,
             currentTask:action.payload
         }
+    case CLEAN_TASK:
+      return{
+        ...state,
+        currentTask:null
+      }
     default:
       return state;
   }
