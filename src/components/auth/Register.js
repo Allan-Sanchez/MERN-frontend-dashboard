@@ -1,10 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AlertContext from "../../context//alert/AlertContext";
+import AuthContext from "../../context/auth/AuthContext";
 
-const Register = () => {
+const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const {userRegister,message,authenticated} = authContext;
+
+  // when user there was authenticated
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push('/project');
+    }
+    if (message) {
+      showAlert(message.msg,message.category);
+    }
+  },[message,authenticated,props.history])
 
   const [saveUser, SetSaveUser] = useState({
     name: "",
@@ -24,7 +38,7 @@ const Register = () => {
 
   const handleUser = (e) => {
     e.preventDefault();
-
+   
     // validar input
     if(email.trim() === '' || name.trim() === '' || password.trim() === '' || confirmPassword.trim() === ''){
       showAlert('all the inputs are required','bg-red-500');
@@ -42,6 +56,14 @@ const Register = () => {
       showAlert('the password must be the same','bg-red-500');
       return;
     }
+
+    userRegister({
+      name,
+      email,
+      password,
+    })
+
+
   };
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center bg-gray-200">
