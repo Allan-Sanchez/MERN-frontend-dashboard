@@ -60,7 +60,7 @@ const AuthState = (props) => {
             // console.log(response);
 
         } catch (error) {
-            console.log(error.response.data.msg);
+            // console.log(error.response.data.msg);
             dispatch({
                 type:LOGIN_MISTAKE,
             });

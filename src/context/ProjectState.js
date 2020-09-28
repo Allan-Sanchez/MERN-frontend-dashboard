@@ -1,8 +1,9 @@
 import React, { useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
 import ProjectContext from "./ProjectContext";
 import ProjectReducer from "./ProjectReducer";
+import clientAxios from "../config/axios";
 import {
+  PROJECT_ERROR,
   FORM_PROJECT,
   GET_PROJECT,
   ADD_PROJECT,
@@ -11,17 +12,13 @@ import {
   DELETE_PROJECT,
 } from "../types";
 const ProjectState = (props) => {
-  const projects = [
-    { id: 1, nameProject: "virtual shop" },
-    { id: 2, nameProject: "intranet" },
-    { id: 3, nameProject: "Desinger your own web" },
-  ];
 
   const initialState = {
     projects: [],
     formNew: false,
     errorForm: false,
     project: null,
+    message:null
   };
 
   // Dispatch para ejecutar las acciones
@@ -34,19 +31,31 @@ const ProjectState = (props) => {
     });
   };
 
-  const getProject = () => {
-    dispatch({
-      type: GET_PROJECT,
-      payload: projects,
-    });
+  const getProject =async () => {
+    try {
+      const response = await clientAxios.get('/api/projects');
+      dispatch({
+        type: GET_PROJECT,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
   };
   // add project
-  const addProject = (project) => {
-    project.id = uuidv4();
-    dispatch({
-      type: ADD_PROJECT,
-      payload: project,
-    });
+  const addProject = async(project) => {
+    try {
+      const response = await clientAxios.post('/api/projects',project);
+      console.log(response);
+      
+      dispatch({
+        type: ADD_PROJECT,
+        payload: response.data,
+      });
+
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   const showError = () => {
@@ -64,11 +73,29 @@ const ProjectState = (props) => {
   };
 
   // delete current projct
-  const deleteProject = (projectId) =>{
-    dispatch({
-      type:DELETE_PROJECT,
-      payload:projectId
-    })
+  const deleteProject =async (projectId) =>{
+    try {
+      const response = await clientAxios.delete(`/api/projects/${projectId}`);
+      console.log(response);
+      dispatch({
+        type:DELETE_PROJECT,
+        payload:projectId
+      });
+    } catch (error) {
+      
+     let alert =error.response.data.msg;
+      dispatch({
+        type:PROJECT_ERROR,
+        payload:alert
+      })
+
+      setTimeout(() =>{
+        dispatch({
+          type:PROJECT_ERROR,
+          payload:''
+        })
+    },5000)
+    }
   }
 
   return (
@@ -78,6 +105,7 @@ const ProjectState = (props) => {
         formNew: state.formNew,
         errorForm: state.errorForm,
         project: state.project,
+        message:state.message,
         openForm,
         getProject,
         addProject,

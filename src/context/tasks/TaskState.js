@@ -7,6 +7,7 @@ import {
   GET_TASKS,
   ADD_TASKS,
   SHOW_ERROR,
+  CLOSE_ERROR,
   DELETE_TASK,
   STATE_TASK,
   CURRENT_TASK,
@@ -59,6 +60,13 @@ const TaskState = (props) => {
       type: SHOW_ERROR,
       payload: message,
     });
+
+    setTimeout(() =>{
+      dispatch({
+          type:CLOSE_ERROR
+      })
+  },5000);
+  
   };
 
   const deleteTask = (id) => {

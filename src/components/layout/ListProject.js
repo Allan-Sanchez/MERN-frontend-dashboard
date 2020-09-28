@@ -17,14 +17,13 @@ const ListProject = ({project}) => {
 
   const onclickProduct = (id) =>{
     currentProject(id) //filter current project
-    // console.log(id);
     getTasks(id);//filter tasks the current project
   }
   return (
     <li className="mb-2">
-      <button className="w-full" onClick={() => onclickProduct(project.id)}>
+      <button className="w-full" onClick={() => onclickProduct(project._id)}>
         <span className="w-full text-md font-semibold inline-block py-1 px-2 uppercase rounded text-gray-700 bg-gray-100  last:mr-0 mr-1">
-          {project.nameProject}
+          {project.name}
         </span>
       </button>
     </li>

@@ -2,6 +2,7 @@ import {
   GET_TASKS,
   ADD_TASKS,
   SHOW_ERROR,
+  CLOSE_ERROR,
   DELETE_TASK,
   STATE_TASK,
   CURRENT_TASK,
@@ -30,6 +31,12 @@ export default (state, action) => {
         ...state,
         errorProject: true,
         errorMessage: action.payload,
+      };
+    case CLOSE_ERROR:
+      return{
+        ...state,
+        errorProject: false,
+        errorMessage:""
       };
     case DELETE_TASK:
       return {

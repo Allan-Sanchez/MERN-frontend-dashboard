@@ -5,7 +5,7 @@ export const ADD_PROJECT = "ADD_PROJECT";
 export const VALIDATE_FORM = "VALIDATE_FORM";
 export const CURRENT_PROJECT = "CURRENT_PROJECT";
 export const DELETE_PROJECT = "DELETE_PROJECT";
-
+export const PROJECT_ERROR = "PROJECT_ERROR";
 // TYPES TASK PROJECT
 export const GET_TASKS = "GET_TASKS";
 export const ADD_TASKS = "ADD_TASKS";
@@ -17,7 +17,7 @@ export const CLEAN_TASK = "CLEAN_TASK";
 
 // show error message
 export const SHOW_ERROR = "SHOW_ERROR";
-
+export const CLOSE_ERROR = "CLOSE_ERROR"
 // show alert
 export const SHOW_ALERT = "SHOW_ALERT";
 export const CLOSE_ALERT = "CLOSE_ALERT";

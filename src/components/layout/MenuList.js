@@ -19,7 +19,7 @@ const MenuList = () => {
     <ul>
       <TransitionGroup>
         {projects.map((project) => (
-          <CSSTransition key={project.id}
+          <CSSTransition key={project._id}
           timeout={200}
           classNames="task"
           >

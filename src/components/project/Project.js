@@ -11,20 +11,23 @@ import No_task from "../../no_task.svg";
 
 const Project = () => {
   const projectContext = useContext(ProjectContext);
-  const { project, deleteProject } = projectContext;
+  const { project, message, deleteProject } = projectContext;
 
   const taskContext = useContext(TaskContext);
-  const {errorProject, errorMessage} = taskContext;
+  const {errorProject, errorMessage,showError} = taskContext;
 
   const authContext = useContext(AuthContext);
   const {userCurrently} = authContext;
-
+  
   useEffect(() =>{
     userCurrently();
-  },[]);
+    if(message){
+      showError(message);
+    }
+  },[message]);
 
   const onClickdelete = () => {
-    deleteProject(project[0].id);
+    deleteProject(project[0]._id);
   };
 
   return (
@@ -41,7 +44,7 @@ const Project = () => {
           <div className="pt-10 bg-gray-400">
             <div className="max-w-xs mx-auto flex justify-between">
               <h2 className="text-center text-2xl text-gray-700 font-bold uppercase">
-                {project[0].nameProject}
+                {project[0].name}
               </h2>
               <div>
                 <button

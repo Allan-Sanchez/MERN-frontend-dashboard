@@ -8,9 +8,9 @@ const MenuForm = () => {
   const { formNew, errorForm, openForm, addProject,showError } = projectsContext;
 
   const [project, setProject] = useState({
-    nameProject: "",
+    name: "",
   });
-  const { nameProject } = project;
+  const { name } = project;
 
   const onChangeProject = (e) => {
     setProject({
@@ -23,7 +23,7 @@ const MenuForm = () => {
     e.preventDefault();
 
     // form validad
-    if (nameProject === "") {
+    if (name === "") {
       showError();
       return;
     }
@@ -32,9 +32,8 @@ const MenuForm = () => {
 
     //clean form
     setProject({
-      nameProject: "",
+      name: "",
     });
-    console.log("dentro del formulario");
   };
   return (
     <div className="mt-5">
@@ -53,10 +52,10 @@ const MenuForm = () => {
               <input
                 type="text"
                 autoFocus
-                name="nameProject"
+                name="name"
                 placeholder="Project name"
                 onChange={onChangeProject}
-                value={nameProject}
+                value={name}
                 className="px-3 py-3 placeholder-gray-600 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
               />
             </div>
