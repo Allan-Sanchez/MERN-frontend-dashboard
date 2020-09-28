@@ -10,6 +10,12 @@ import "./style.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Project from "./components/project/Project";
+import authToken from "./config/authToken";
+import PrivateRoute from './components/route/PrivateRoute';
+const token = localStorage.getItem('token');
+if (token) {
+  authToken(token);
+}
 
 function App() {
   return (
@@ -21,7 +27,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Login}></Route>
                 <Route exact path="/register" component={Register}></Route>
-                <Route exact path="/project" component={Project}></Route>
+                <PrivateRoute exact path="/project" component={Project}></PrivateRoute>
               </Switch>
             </Router>
           </AuthState>

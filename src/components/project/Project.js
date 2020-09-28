@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProjectContext from "../../context/ProjectContext";
 import TaskContext from "../../context/tasks/TaskContext";
+import AuthContext from "../../context/auth/AuthContext"
 import ErrorProject from "./ErrorProject";
 import Menu from "../layout/Menu";
 import MenuBar from "../layout/MenuBar";
@@ -14,6 +15,13 @@ const Project = () => {
 
   const taskContext = useContext(TaskContext);
   const {errorProject, errorMessage} = taskContext;
+
+  const authContext = useContext(AuthContext);
+  const {userCurrently} = authContext;
+
+  useEffect(() =>{
+    userCurrently();
+  },[]);
 
   const onClickdelete = () => {
     deleteProject(project[0].id);
