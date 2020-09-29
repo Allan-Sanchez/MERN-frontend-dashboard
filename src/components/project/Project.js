@@ -24,6 +24,7 @@ const Project = () => {
     if(message){
       showError(message);
     }
+    //eslint-disable-next-line
   },[message]);
 
   const onClickdelete = () => {
@@ -57,7 +58,7 @@ const Project = () => {
                 </button>
               </div>
             </div>
-            <FormProject id={project[0].id}></FormProject>
+            <FormProject id={project[0]._id}></FormProject>
 
             <ListTask></ListTask>
           </div>

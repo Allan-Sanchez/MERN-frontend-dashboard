@@ -9,17 +9,17 @@ const Tasks = ({ task }) => {
   const {project} = projectContext;
 
   const taskContext = useContext(TaskContext);
-  const {deleteTask, getTasks, changeStateTask,handleCurrentTask} = taskContext;
+  const {deleteTask, getTasks, updateTask,handleCurrentTask} = taskContext;
 
   const [currentProject] = project;
   const deleOneTask =(id) =>{
-    deleteTask(id);
-    getTasks(currentProject.id)
+    deleteTask(id,currentProject._id);
+    getTasks(currentProject.id);
   };
 
   const changeState = (task) =>{
     task.state =!task.state;
-    changeStateTask(task);
+    updateTask(task);
   }
 
   const editTask = (task) =>{
@@ -52,7 +52,7 @@ const Tasks = ({ task }) => {
         </button>
 
         <button
-          onClick={() =>deleOneTask(task.id)}
+          onClick={() =>deleOneTask(task._id)}
           className="ml-2 bg-gray-200 text-gray-700  font-semibold px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none "
           type="button"
           style={{transition: "all .15s ease"}}

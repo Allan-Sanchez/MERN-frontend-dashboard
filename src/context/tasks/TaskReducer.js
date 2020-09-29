@@ -4,7 +4,6 @@ import {
   SHOW_ERROR,
   CLOSE_ERROR,
   DELETE_TASK,
-  STATE_TASK,
   CURRENT_TASK,
   UPDATE_TASK,
   CLEAN_TASK
@@ -15,22 +14,20 @@ export default (state, action) => {
     case GET_TASKS:
       return {
         ...state,
-        tasksProject: state.tasks.filter(
-          (task) => task.projectId === action.payload
-        ),
+        tasksProject: action.payload,
       };
     case ADD_TASKS:
       return {
         ...state,
-        tasks: [action.payload, ...state.tasks],
+        tasksProject: [action.payload, ...state.tasksProject],
         errorProject: false,
         errorMessage: "",
       };
     case SHOW_ERROR:
       return {
         ...state,
-        errorProject: true,
         errorMessage: action.payload,
+        errorProject: true,
       };
     case CLOSE_ERROR:
       return{
@@ -41,14 +38,13 @@ export default (state, action) => {
     case DELETE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
+        tasksProject: state.tasksProject.filter((task) => task._id !== action.payload),
       };
     case UPDATE_TASK:
-    case STATE_TASK:
       return {
         ...state,
-        tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
+        tasksProject: state.tasksProject.map((task) =>
+          task._id === action.payload._id ? action.payload : task
         ),
       };
     case CURRENT_TASK:

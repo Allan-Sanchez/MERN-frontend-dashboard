@@ -46,7 +46,6 @@ const ProjectState = (props) => {
   const addProject = async(project) => {
     try {
       const response = await clientAxios.post('/api/projects',project);
-      console.log(response);
       
       dispatch({
         type: ADD_PROJECT,

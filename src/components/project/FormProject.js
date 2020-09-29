@@ -44,7 +44,6 @@ const FormProject = ({id}) => {
       if (currentTask === null) {
         
         task.projectId = id;
-        task.state = false
         // new task added
         addTask(task);
       }else{

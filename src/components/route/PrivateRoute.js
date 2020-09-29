@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 
   useEffect(() => {
     userCurrently();
-  }, []);
+  }, [userCurrently]);
   return (
     <Route
       {...props}

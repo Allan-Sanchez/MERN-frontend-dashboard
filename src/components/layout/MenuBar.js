@@ -9,6 +9,7 @@ const MenuBar = () => {
 
   useEffect(() => {
     userCurrently();
+    //eslint-disable-next-line
   }, []);
 
   return (
