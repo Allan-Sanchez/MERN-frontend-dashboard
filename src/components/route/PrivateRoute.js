@@ -8,7 +8,8 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 
   useEffect(() => {
     userCurrently();
-  }, [userCurrently]);
+    //eslint-disable-next-line
+  }, []);
   return (
     <Route
       {...props}

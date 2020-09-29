@@ -10,6 +10,7 @@ import {
   VALIDATE_FORM,
   CURRENT_PROJECT,
   DELETE_PROJECT,
+  CLEAN_PROJECT
 } from "../types";
 const ProjectState = (props) => {
 
@@ -71,6 +72,12 @@ const ProjectState = (props) => {
     });
   };
 
+  const cleanProject = () =>{
+    dispatch({
+      type:CLEAN_PROJECT
+    })
+  }
+
   // delete current projct
   const deleteProject =async (projectId) =>{
     try {
@@ -110,7 +117,8 @@ const ProjectState = (props) => {
         addProject,
         showError,
         currentProject,
-        deleteProject
+        deleteProject,
+        cleanProject
       }}
     >
       {props.children}

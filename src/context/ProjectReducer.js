@@ -6,6 +6,7 @@ import {
   VALIDATE_FORM,
   CURRENT_PROJECT,
   DELETE_PROJECT,
+  CLEAN_PROJECT
 } from "../types";
 
 export default (state, action) => {
@@ -51,6 +52,11 @@ export default (state, action) => {
       return{
         ...state,
         message:action.payload
+      };
+    case CLEAN_PROJECT:
+      return{
+        ...state,
+        project:null
       }
     default:
       return state;
